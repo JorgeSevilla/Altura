@@ -1,25 +1,25 @@
 # -*- coding: UTF-8 -*-
 
 
-def cadastrar(nomes):  # Función para ingresar nombres nuevos
+def cadastrar(nomes):  # Cadastrar nomes novos
     print("Digite o nome: ")
     nome = input()
     nomes.append(nome)
 
 
-def listar(nomes):  # Función que lista los nombres ingresados
+def listar(nomes):  # Lista nomes cadastrados
     print('Listando nomes: ')
     for nome in nomes:
         print(nome)
 
 
-def remover(nomes):  # Función para remover un nombre
+def remover(nomes):  # Remover un nome
     print('O nome para remover')
     nome = input()
     nomes.remove(nome)
 
 
-def alterar(nomes):  # Para modificar un nombre
+def alterar(nomes):  # Alterar um nome
     print('Qual nome vc gostaria alterar')
     nome_a_alterar = input()
 
@@ -30,21 +30,32 @@ def alterar(nomes):  # Para modificar un nombre
         nomes[posicao] = nome_novo
 
 
+def procurar(nomes):  # Procurar o nome cadastrado
+    print('Digite nome a procurar')
+    nome_a_procurar = input()
+    if nome_a_procurar in nomes:
+        print('Nome %s está cadastrado' % nome_a_procurar)
+    else:
+        print('Nome %s ñao está cadastrado' % nome_a_procurar)
+
+
 def menu():  # Menú para escoger la opción a ejecutar
     nomes = []
     escolha = ''
     while escolha != '0':
-        print('Digite 1 para cadastrar, 2 para ver nomes, 3 para remover nomes, 4 para alterar nombre, 0 para terminar')
+        print('Digite 1 para cadastrar, 2 para ver nomes, 3 para remover nomes,'
+              ' 4 para alterar nome, 5 para procurar un nome, 0 para terminar')
         escolha = input()
 
         if escolha == '1':
             cadastrar(nomes)
-
         elif escolha == '2':
             listar(nomes)
         elif escolha == '3':
             remover(nomes)
         elif escolha == '4':
             alterar(nomes)
+        elif escolha == '5':
+            procurar(nomes)
 
 menu()
