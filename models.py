@@ -1,11 +1,12 @@
 # -*- coding: UTF-8 -*-
-
+import PerfilError
 class Perfil(object):
     'Classe padrao para perfis de usuário'
 
     def __init__(self, nome, telefone, empresa):  # Son las carectarísticas y es un costructtor que recibe parámetros
         if(len(nome) < 3):
-            raise ArgumentoInvalidoError('Nome deve ter pelo menos 3 caracteres')
+            raise ArgumentoInvalidoError('Nome deve ter pelo menos 3 caracteres')  # Verifica parámetros deja mas
+            #  reutilizable y se usa la clase
         self.nome = nome
         self.telefone = telefone
         self.empresa = empresa
@@ -28,8 +29,8 @@ class Perfil(object):
         perfis = []
         for linha in arquivo:
             valores = linha.split(',')
-            if(len(valores) is not 3):
-                raise ValueError('Uma linha no arquivo % s deve ter 3 valores' % nome_arquivo)
+            if(len(valores) is not 3):  #Para verificar el tamaño de lista si no tiene lanza excepxión
+                raise PerfilError('Uma linha no arquivo % s deve ter 3 valores' % nome_arquivo)
             perfis.append(classe(*valores))
         arquivo.close()
         return perfis
@@ -46,10 +47,10 @@ class Perfil_Vip(Perfil):
         if self.__tipo == 0:
             return super(Perfil_Vip, self).obter_curtidas() * 10  # Se usa super para ingresar a la clase padre
 
-class ArgumentoInvalidoError(Exception):
+class ArgumentoInvalidoError(Exception):  # Herada una excepción de la clase
     def __init__(self, mensagem):
         self.mensagem = mensagem
-    def __str__(self):
+    def __str__(self):  # Método para imprimir mensaje
         return repr(self.mensagem)
 
 # perfil = Perfil(nome='Jorge Sevilla', telefone='991502621', empresa='X')
